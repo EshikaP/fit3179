@@ -1,0 +1,27 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 500,
+    "title": "Dot Map of the Road accidents in Australia from 2018-2019 (One dot represents one crash)",
+    "projection": {"type": "equirectangular"},
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/custom.geo_austop.json",
+          "format": {"type": "topojson", "feature": "custom.geo_aus"}
+        },
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/crash_location_aus.csv"
+        },
+        "mark": {"type": "point", "tooltip": {"content": "data"}},
+        "encoding": {
+          "longitude": {"field": "longitude", "type": "quantitative"},
+          "latitude": {"field": "latitude", "type": "quantitative"},
+          "size": {"value": 1}
+        }
+      }
+    ]
+  }
