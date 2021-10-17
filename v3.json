@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 500,
+  "title": "Map of the Road accidents in New Zealand in 2018",
+  "projection": {
+    "type": "equirectangular",
+    "center": {"expr": "center_to"},
+    "scale": {"expr": "zoom_level"}
+  },
+  "params": [
+    {
+      "name": "zoom_level",
+      "value": 2200,
+      "bind": {
+        "input": "range",
+        "min": 2200,
+        "max": 20000,
+        "step": 1,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [172, -41],
+      "bind": {
+        "input": "select",
+        "options": [[175, -37], [172, -43], [170, -46], [174, -41]],
+        "labels": ["Auckland", "Christchurch", "Dunedin", "Wellington"],
+        "name": "Map Centre: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/custom.geo.top_nz.json",
+        "format": {"type": "topojson", "feature": "custom.geo_nz"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d6d6d6",
+        "stroke": "white",
+        "size": 60
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"
+      },
+      "mark": {"type": "circle"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {"value": 4},
+        "tooltip": [{"field": "longitude", "type": "quantitative", "title": "Longitude"}, 
+                    {"field": "latitude", "type": "quantitative", "title": "Latitude"}, 
+                    {"field": "severity", "type": "nominal", "title": "Severity of Road Accident"}],
+        "color": {
+          "field": "severity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "property_damage",
+              "minor_injury",
+              "serious_injury",
+              "fatality"
+            ],
+            "range": ["#FFC300", "#FF5733", "#03A5FF", "#001672"]
+          },
+          "legend":{"labelExpr": "{'property_damage': 'Property Damage', 'minor_injury': 'Minor Injury', 'serious_injury': 'Serious Injury', 'fatality': 'Fatality'}[datum.label]"},
+          "title": "Severity of Road Accident"
+        }
+      }
+    }
+  ]
+}

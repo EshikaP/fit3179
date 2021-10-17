@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"},
+    "hconcat": [{
+    "width":175,
+    "title": "Speed Limit against Traffic Controls",
+    "transform": [{"filter": {"and": ["datum.traffic_controls != 'null'"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "traffic_controls", "title": "Traffic Controls", "axis": {"labelExpr": "{'giveway_sign': 'Giveway Sign', 'stop_sign': 'Stop Sign', 'traffic_lights': 'Traffic Light', 'manual_control': 'Manual Control', 'school_crossing': 'School Crossing'}[datum.label]"}},
+      "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit"},
+      "color": {"aggregate": "count", "type": "quantitative",
+      "scale": {
+      "domain": [0,20,500,1000,2000,10000],
+      "range": "heatmap"},
+      "title": "Total Number of Road Accidents"}
+    } 
+    },{
+    "width":175,
+    "title": "Speed Limit against Lighting",
+    "transform": [{"filter": {"and": ["datum.lighting != 'null'"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "lighting", "title": "Lighting", "axis": {"labelExpr": "{'daylight': 'Daylight', 'dawn_dusk': 'Dawn/Dusk', 'darkness_not_lit': 'Dark'}[datum.label]"}},
+      "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit"},
+      "color": {"aggregate": "count", "type": "quantitative",
+      "scale": {
+      "domain": [0,20,500,1000,2000,10000],
+      "range": "heatmap"
+    },
+      "title": "Total Number of Road Accidents"}
+    } 
+    }, {
+    "width":175,
+    "title": "Speed Limit against Weather Conditons",
+    "transform": [{"filter": {"and": ["datum.weather != 'null'"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "weather", "title": "Weather Conditons", "axis": {"labelExpr": "{'fine': 'Fine', 'mist': 'Mist', 'snow': 'Snow', 'rain': 'Rain'}[datum.label]"}},
+      "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit"},
+      "color": {"aggregate": "count", "type": "quantitative",
+        "scale": {
+      "domain": [0,20,500,1000,2000,10000],
+      "range": "heatmap"
+    },
+      "title": "Total Number of Road Accidents"}
+    } 
+    }
+    ]
+  }

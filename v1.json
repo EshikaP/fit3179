@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/overtime_accidents_nz.csv"
+    },
+    "title": "Line Graph of Total Number of Road Accidents (2000-2018)",
+
+    "layer":[{
+    "width":400,    
+  "mark": {"type": "line", "size": 2, "color":"#3a3a4b"},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "title": "Year"
+    },
+    "y": {
+      "aggregate": "count", "title": "Total Number of Road Accidents"
+    }
+  }},
+{"transform": [{"filter": "datum.year == '2007'"}, 
+               {"aggregate": [{"op": "count", "field": "year", "as": "total"}],"groupby": ["year"]}],
+  "mark": {"type": "text", "dx": -42, "dy": -75, "color": "deeppink", "fontWeight": "bold"},
+  "encoding": {
+  "text": {"field": "total"}}},
+  {"transform": [{"filter": "datum.year == '2007'"}],
+  "mark": {"type": "point", "size": 110, "color": "deeppink", "shape": "cross", "filled": true},
+  "encoding": {"x": {"field": "year"}, "y": {"aggregate": "count"}}}
+  ]
+}

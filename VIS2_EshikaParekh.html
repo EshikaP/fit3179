@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- My CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+    <Title>Road Accidents in New Zealand</Title>
+</head>
+
+<body>
+
+    <div class="page">
+   
+       <div class="pure-g">
+         <div class="pure-u-1-1">
+           <h1>Analysis of Road Accidents in New Zealand</h1>
+           <div class="description description-centre">
+              <p>This page explores the trends in the road accidents in New Zealand over the years 2000 to 2018. It will then look more closely into the road accidents in 2018. It will investigate if there is any relationship between road accdients and the local government area or type of vehicle. As well as if the number of road accidents will change according to the speed limit and traffic controls, or weather or day lighting.  </p>
+           </div>
+        </div>
+       </div>
+
+       <div class="pure-g">
+            <div class="pure-u-1-1">
+             <h2>The trend of the Total Number of Road Accidents and Casualties over 2000 to 2018</h2>
+            </div>  
+            <div class="pure-u-1-2">
+             <div class="description description-left">
+               <p>The line chart below on the left shows the trend of the number of road accidents yearly from 2000 to 2018. <span style="color: deeppink; font-weight: bold;">An annotation for 2007 is added, as this was the year which had the highest number of road accidents.</span> Further, the trend of the Total Number of Casualties can be explored looking at the stacked area chart on the right.</p>
+             </div>
+            </div>
+            <div class="pure-u-1-2">
+             <div class="description description-right">
+              <p> It has been filtered by colour to clearly identify what proportion of the total casualties are minor or serious injuries or fatlities. We can see majority of the casualities are minor injuries. Both the graphs show a similar trend, indicating there is a relationship between the total number of road accidents and the total number of casualities. </p>
+             </div>
+            </div>
+       </div>
+       <br>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div id="v1" class="vis-container"></div>
+            </div>
+            <div class="pure-u-1-2">
+                <div id="v2" class="vis-container"></div>
+            </div>
+        </div>
+
+        <br>
+
+       <div class="pure-g">
+           <div class="pure-u-1-1">
+            <h2>Overview of Road Accidents in 2018 of New Zealand</h2>
+             <div class="description description-bcentre">
+               <p>A map of New Zealand has been provided below to investigate where the cluster of road accidents occur, and the severity of those road accidents using a colour scale. A zoom scroll bar has been provided as well as a drop down selection to focus on busier areas of New Zealand. <span style="color: #FF5733; font-weight: bold;"> Such as Auckland and Wellington, which seem to have a cluster of number of road accidents, indicating these are high risk zones.</span> This information can be useful to identify where stricter road safety measures need to be placed to increase road safety.</p>
+             </div>
+            </div>
+       </div>
+
+       <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="v3" class="vis-container"></div>
+            </div>
+       </div>
+
+        <br>
+
+       <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div class="description description-bcentre">
+                   <p>Below is a stacked bar chart which displays the total number of road accidents for each local government Area. It has been filtered by the severity of the road accident using colour scale, same as the dot map provided above. <span style="color: #FF5733; font-weight: bold;"> Auckland can clearly been seen to have the highest number of road accident.</span> To interact with the chart, click any place on the chart and drag across the desired local government areas to calculate their total road accidents, and the result will be displayed in the textbox next to the legend labelled 'Total Road Accidents'. </p>
+                </div>
+            </div>
+       </div>
+
+        <br>
+
+       <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="v4" class="vis-container"></div>
+            </div>
+        </div>
+
+        <br><br>
+     
+        <div class="pure-g"> 
+          <div class="pure-u-1-1">
+            <h2>Overview of the type of Vehicles in Road Accidents in 2018</h2>
+            <div class="description description-bcentre">
+              <p>This section explores the Types of Vehicles (Bus, Car, Taxi, Train, Tram, Truck) in Road Accidents to investigate which is more likely to be in a Road Accident, and which is not. </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="pure-g"> 
+          <div class="pure-u-1-2">
+            <div style="padding-right: 25px;  padding-left: 80px; font-size: 14px;">
+              <p>On the right, there is a pie chart to show there is high proportion of cars in the Total Road Accidents. To interact with the pie chart, the values on the legend can be clicked on. Additonally below there are two dot charts. The dot chart on the left includes all vehicles types and the number of road accidents the vehicle was in. <span style="color: #7F461B; font-weight: bold;"> As annotated 'car' have the highest number of accidents by far, just as seen in the pie chart.</span> </p>
+              <p>Hence, the dot chart on the right filters out 'car', and focuses on the other vehicles to more closely compare the number of road accidents they are in. <span style="color: #66A61E; font-weight: bold;"> As annotated 'trucks' have the second highest number of accidents. </span> To interact with these two charts, click on any of the points representitive of a vehcile to directly compare with the same point on the chart beside it.</p>
+            </div>
+          </div>
+          <div class="pure-u-1-2">
+            <div id="v5" class="vis-container"></div>
+          </div>
+        </div>
+        
+        <br>
+
+        <div class="pure-g">
+          <div class="pure-u-1-1">
+              <div id="v6" class="vis-container"></div>
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="pure-g"> 
+          <div class="pure-u-1-1">
+            <h2>Overview of the Total Road Accidents according to the Environment </h2>
+            <div class="description description-bcentre">
+              <p>This section investigates the relationship between the speed limit and traffic control, or weather, or lighting of the day in terms of the number of road accidents. Three heatmaps have been provided to explore this. <span style="color: #1c31ad; font-weight: bold;">As we can see majority of road accidents occured when the speed limit was 50.</span> Then we can also analyse the number of road accidents according to the other conditons. <span style="color: #1c31ad; font-weight: bold;">It can be seen that at giveway signs, or during daylight or when the weather was fine, the total road accidents was the highest. </span> </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pure-g">
+          <div class="pure-u-1-1" style="padding-left: 150px;">
+              <div id="v7" class="vis-container"></div>
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="pure-g">
+          <div class="pure-u-1-1 small-font">
+            <p>This visualisation is created by <a href="https://github.com/KadekSatriadi" target="_blank">Eshika Parekh</a>. The datasource is <a href="https://www.kaggle.com/mgray39/australia-new-zealand-road-crash-dataset" target="_blank">Australia & New Zealand Road Crash Dataset by Mitch</href>, from Kaggle.</p>
+          </div>
+        </div>
+     
+   
+     </div> <!-- end page -->
+
+     <script type="text/javascript">
+        var specV1= "v1.json";
+        var specV2= "v2.json";
+        var specV3= "v3.json";
+        var specV4= "v4.json";
+        var specV5= "v5.json";
+        var specV6= "v6.json";
+        var specV7= "v7.json";
+      
+        vegaEmbed('#v1', specV1).then(function(result){ }).catch(console.error);
+        
+        vegaEmbed('#v2', specV2).then(function(result){ }).catch(console.error);
+      
+        vegaEmbed('#v3', specV3).then(function(result){ }).catch(console.error);
+      
+        vegaEmbed('#v4', specV4).then(function(result){ }).catch(console.error);
+
+        vegaEmbed('#v5', specV5).then(function(result){ }).catch(console.error);
+
+        vegaEmbed('#v6', specV6).then(function(result){ }).catch(console.error);
+
+        vegaEmbed('#v7', specV7).then(function(result){ }).catch(console.error);
+      </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked Bar chart",
+  "data": {
+      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"
+    },
+  "title": {"text":"Stacked Bar Chart of the Total Number of Road Accidents in each Local Government Area in 2018"},
+  "hconcat": [ 
+  {"params": [{"name": "brush", "select": "interval"}],
+    "width": 830,
+    "height": 400,
+    "mark": {"type": "bar", "tooltip": true},
+    "encoding": {
+      "x": {"field": "local_government_area", "type": "nominal", "sort":"-y", "title": "Local Government Area", "axis": {"labelSeparation": 2}},
+      "y": {"aggregate": "count", "type": "quantitative",  "title": "Total Number of Road Accidents"},
+      "color": {
+        "condition": {"param": "brush", "field": "severity", 
+        "scale": {
+            "domain": [
+              "property_damage",
+              "minor_injury",
+              "serious_injury",
+              "fatality"
+            ],
+            "range": ["#FFC300", "#FF5733", "#03A5FF", "#001672"]
+          },
+          "legend":{"orient":"none", "legendX": 853, "legendY": 40,"symbolType": "circle","labelExpr": "{'property_damage': 'Property Damage', 'minor_injury': 'Minor Injury', 'serious_injury': 'Serious Injury', 'fatality': 'Fatality'}[datum.label]"},
+          "title": "Severity of Road Accident"},
+        "value": "grey"
+      }
+    }
+  }, {
+    "transform": [
+      {"filter": {"param": "brush"}},
+      {"aggregate": [{
+      "op": "count",
+      "field": "local_government_area",
+      "as": "count"}]}
+    ],
+    "width": 50,
+      "title": "Total Number of Road Accidents",
+      "mark": "text",
+      "encoding": {
+        "text": {"field": "count", "type": "quantitative"},
+        "y": {"field": "local_government_area", "type": "nominal", "axis": null}
+      }
+    }
+  ]
+}

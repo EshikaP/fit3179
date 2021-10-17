@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Pie Chart for number fo accidents for each vechicle type",
+  "data": {
+      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/vechicle_accidents_nz.csv"
+    },
+  "width": 400,
+  "height": 250,
+  "config": {
+    "view": {"stroke": "transparent"}, "padding": {"left": 110}},
+  "params": [{
+            "name": "vechicle_legend",
+            "select": {"type": "point", "fields": ["Vechicle"]},
+            "bind": "legend"}],
+  "transform": [{"filter": {"and": ["datum.Vechicle != 'null'"]}}],
+  "mark": {"type": "arc", "innerRadius": 50, "tooltip": true},
+  "encoding": {
+    "theta": {"field": "Accidents", "type": "quantitative"},
+    "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
+      {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"}],
+    "color": {"field": "Vechicle", "type": "nominal", "scale": {
+      "range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]},
+    "legend": {"orient":"none", "legendX": -2, "legendY": 15, "title": "Type of Vehicle"}},
+  "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}}
+}
