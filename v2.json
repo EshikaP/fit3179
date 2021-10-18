@@ -1,25 +1,35 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/casualties_overtime_nz.csv"
-      },
-    "title": "Stacked Area Chart of Total Number of Casualties (2000-2018)",
-    "width": 400,
-    "mark": {"type": "area", "tooltip": true},
-    "encoding": {
-      "x": {
-        "field": "year",
-        "title": "Year"
-      },
-      "y": {
-        "aggregate": "sum", "field": "value", "title": "Total Number of Casualties"
-      },
-      "color": {
-        "field": "variable",
-        "title": "Type of Casualties",
-        "scale": {
-            "range": ["#800080", "#DDA0DD", "#BA55D3"]},
-         "legend":{"labelExpr": "{'fatalities': 'Fatalities', 'minor_injuries': 'Minor Injuries', 'serious_injuries': 'Serious Injuries'}[datum.label]"}
-      }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/casualties_overtime_nz.csv"
+    },
+  "title": "Stacked Area Chart of Total Number of Casualties (2000-2018)",
+  "layer": [{
+  "width": 400,
+  "mark": {"type": "area", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "title": "Year"
+    },
+    "y": {
+      "aggregate": "sum", "field": "value", "title": "Total Number of Casualties"
+    },
+    "color": {
+      "field": "variable",
+      "title": "Type of Casualties",
+      "scale": {
+          "range": ["#800080", "#EDBEEB", "#BA55D3"]},
+       "legend":{"labelExpr": "{'fatalities': 'Fatalities', 'minor_injuries': 'Minor Injuries', 'serious_injuries': 'Serious Injuries'}[datum.label]"}
     }
-  }
+  }},
+  {"transform": [{"filter": "datum.year == '2007'"}, 
+             {"aggregate": [{"op": "sum", "field": "value", "as": "total"}],"groupby": ["year"]}],
+"mark": {"type": "text", "dx": -42, "dy": -75, "color": "deeppink", "fontWeight": "bold"},
+"encoding": {
+"text": {"field": "total"}}},
+{"transform": [{"filter": "datum.year == '2007'"}],
+"mark": {"type": "point", "size": 150, "color": "deeppink", "shape": "cross", "filled": true},
+"encoding": {"x": {"field": "year"}, "y": {"aggregate": "sum", "field": "value"}}}
+  ]
+} 

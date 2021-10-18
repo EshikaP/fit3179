@@ -1,25 +1,88 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Pie Chart for number fo accidents for each vechicle type",
+  "description": "Dot Plot for number fo accidents for each vechicle type",
   "data": {
       "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/vechicle_accidents_nz.csv"
     },
-  "width": 400,
-  "height": 250,
-  "config": {
-    "view": {"stroke": "transparent"}, "padding": {"left": 110}},
-  "params": [{
-            "name": "vechicle_legend",
-            "select": {"type": "point", "fields": ["Vechicle"]},
-            "bind": "legend"}],
-  "transform": [{"filter": {"and": ["datum.Vechicle != 'null'"]}}],
-  "mark": {"type": "arc", "innerRadius": 50, "tooltip": true},
-  "encoding": {
-    "theta": {"field": "Accidents", "type": "quantitative"},
-    "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
-      {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"}],
-    "color": {"field": "Vechicle", "type": "nominal", "scale": {
-      "range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]},
-    "legend": {"orient":"none", "legendX": -2, "legendY": 15, "title": "Type of Vehicle"}},
-  "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}}
+    "config": {"concat": {"spacing": 70}, "padding": 35, "legend": {"orient":"none", "legendX": 940, "legendY": 0}},
+    "hconcat": [
+      {"layer": [
+            {"title": "Dot Plot of Total Road Accidents for each Vehicle Type",
+            "width": 400,
+            "height": 250,
+            "mark": {
+            "type": "circle",
+            "opacity": 1,
+            "size": 100},
+            "params": [{
+              "name": "vechicle_legend",
+              "select": {"type": "point", "fields": ["Vechicle"]},
+              "bind": "legend"}],
+            "encoding": {
+              "x": {"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"},
+              "y": {"field": "Accidents", "type": "quantitative", "title": "Number of Accidents"},
+              "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
+                {"field": "Accidents", "type": "quantitative", "title": "Number of Accidents"}],
+              "color": {
+                "field": "Vechicle",
+                "type": "nominal",
+                "scale": {"range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]},
+                "legend":{"title": "Type of Vehicle"}
+            },
+            "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}}
+            },
+          {
+            "transform": [
+              {"filter": "datum.Vechicle == 'car'"},
+              {"calculate": "'Cars were in the most road accidents: ' + datum['Accidents']", "as": "text_annotation"}],
+              "mark": {"type": "text", "dx": -73, "dy":-105, "fontWeight":"bold", "color": "#7F461B"},
+              "params": [{
+                  "name": "vechicle_filter",
+                  "select": {"type": "point", "fields": ["Vechicle"]}}],
+              "encoding": {
+              "text": {"calculate": "'The most road accidents: ' + datum['Accidents']", "field": "text_annotation"},
+              "opacity":{"condition": {"param": "vechicle_filter", "value": 1}, "value": 0.15}}
+              }
+        ]},
+
+
+        {"layer": [
+              {"transform": [{"filter": "datum.Vechicle != 'car'"}],
+              "title": "Dot Plot of Total Road Accidents for each Vehicle Type (Without 'Car')",
+              "width": 400,
+              "height": 250,
+              "mark": {
+              "type": "circle",
+              "opacity": 1,
+              "size": 100},
+              "params": [{
+                "name": "vechicle_legend",
+                "select": {"type": "point", "fields": ["Vechicle"]},
+                "bind": "legend"}],
+              "encoding": {
+                "x": {"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"},
+                "y": {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"},
+                "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
+                  {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"}],
+                "color": {
+                  "field": "Vechicle",
+                  "type": "nominal",
+                  "scale": {"range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]}  
+          },
+          "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}
+          }}, 
+          {
+            "transform": [
+              {"filter": "datum.Vechicle == 'truck'"},
+              {"calculate": "'Trucks were in the most road accidents: ' + datum['Accidents']", "as": "text_annotation"}],
+              "mark": {"type": "text", "dx": 70, "dy":-110, "fontWeight":"bold", "color": "#66A61E"},
+              "params": [{
+                  "name": "vechicle_filter",
+                  "select": {"type": "point", "fields": ["Vechicle"]}}],
+              "encoding": {
+              "text": {"calculate": "'The most road accidents: ' + datum['Accidents']", "field": "text_annotation"},
+              "opacity":{"condition": {"param": "vechicle_filter", "value": 1}, "value": 0.15}}
+              }]}
+    ]
+    
 }

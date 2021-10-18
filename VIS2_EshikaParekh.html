@@ -34,12 +34,12 @@
             </div>  
             <div class="pure-u-1-2">
              <div class="description description-left">
-               <p>The line chart below on the left shows the trend of the number of road accidents yearly from 2000 to 2018. <span style="color: deeppink; font-weight: bold;">An annotation for 2007 is added, as this was the year which had the highest number of road accidents.</span> Further, the trend of the Total Number of Casualties can be explored looking at the stacked area chart on the right.</p>
+               <p>The line chart below on the left shows the trend of the number of road accidents yearly from 2000 to 2018. <span style="color: deeppink; font-weight: bold;">An annotation for 2007 is added, as this was the year which had the highest number of road accidents (43566).</span> This line chart can be directly compared with the chart beside it which looks at the total casualties.</p>
              </div>
             </div>
             <div class="pure-u-1-2">
              <div class="description description-right">
-              <p> It has been filtered by colour to clearly identify what proportion of the total casualties are minor or serious injuries or fatlities. We can see majority of the casualities are minor injuries. Both the graphs show a similar trend, indicating there is a relationship between the total number of road accidents and the total number of casualities. </p>
+              <p> The trend of the Total Casualties can be explored looking at the stacked area chart on the right. Colour is used to identify what proportion of the total casualties are minor or serious injuries or fatlities. We can see majority of the casualities are minor injuries. <span style="color: deeppink; font-weight: bold;">Additionally, 2007 had the highest total casualities (17312).</span>  </p>
              </div>
             </div>
        </div>
@@ -89,33 +89,26 @@
         </div>
 
         <br><br>
-     
+
         <div class="pure-g"> 
           <div class="pure-u-1-1">
             <h2>Overview of the type of Vehicles in Road Accidents in 2018</h2>
-            <div class="description description-bcentre">
-              <p>This section explores the Types of Vehicles (Bus, Car, Taxi, Train, Tram, Truck) in Road Accidents to investigate which is more likely to be in a Road Accident, and which is not. </p>
-            </div>
           </div>
-        </div>
-        
-        <div class="pure-g"> 
           <div class="pure-u-1-2">
-            <div style="padding-right: 25px;  padding-left: 80px; font-size: 14px;">
-              <p>On the right, there is a pie chart to show there is high proportion of cars in the Total Road Accidents. To interact with the pie chart, the values on the legend can be clicked on. Additonally below there are two dot charts. The dot chart on the left includes all vehicles types and the number of road accidents the vehicle was in. <span style="color: #7F461B; font-weight: bold;"> As annotated 'car' have the highest number of accidents by far, just as seen in the pie chart.</span> </p>
-              <p>Hence, the dot chart on the right filters out 'car', and focuses on the other vehicles to more closely compare the number of road accidents they are in. <span style="color: #66A61E; font-weight: bold;"> As annotated 'trucks' have the second highest number of accidents. </span> To interact with these two charts, click on any of the points representitive of a vehcile to directly compare with the same point on the chart beside it.</p>
+            <div class="description description-left">
+              <p>This section explores the types of Vehicles (Bus, Car, Taxi, Train, Tram, Truck) in Road Accidents to investigate which is more likely to be in a Road Accident, and which is not. The dot chart below on the left includes all the vehicles types and the number of road accidents the type of vehicle was in. <span style="color: #7F461B; font-weight: bold;"> As seen by the brown text annotation 'car' have been in the highest number of accidents by far.</span> </p>
             </div>
           </div>
           <div class="pure-u-1-2">
-            <div id="v5" class="vis-container"></div>
+            <div class="description description-right">
+              <p>Hence, the dot chart on the right filters out 'car', and focuses on the other vehicles to more closely compare the number of road accidents the othee types of vehicles are in. <span style="color: #66A61E; font-weight: bold;"> As annotated 'trucks' have the second highest number of accidents. </span> To interact with these two charts, click on any of the points representitive of a vehicle on the legend to directly compare thier position in both charts.</p>
+            </div>
           </div>
         </div>
-        
-        <br>
 
         <div class="pure-g">
           <div class="pure-u-1-1">
-              <div id="v6" class="vis-container"></div>
+              <div id="v5" class="vis-container"></div>
           </div>
         </div>
 
@@ -132,7 +125,7 @@
 
         <div class="pure-g">
           <div class="pure-u-1-1" style="padding-left: 150px;">
-              <div id="v7" class="vis-container"></div>
+              <div id="v6" class="vis-container"></div>
           </div>
         </div>
 
@@ -145,7 +138,7 @@
         </div>
      
    
-     </div> <!-- end page -->
+     </div> 
 
      <script type="text/javascript">
         var specV1= "v1.json";
@@ -154,7 +147,6 @@
         var specV4= "v4.json";
         var specV5= "v5.json";
         var specV6= "v6.json";
-        var specV7= "v7.json";
       
         vegaEmbed('#v1', specV1, {"actions": false}).then(function(result){ }).catch(console.error);
         
@@ -168,7 +160,6 @@
 
         vegaEmbed('#v6', specV6, {"actions": false}).then(function(result){ }).catch(console.error);
 
-        vegaEmbed('#v7', specV7, {"actions": false}).then(function(result){ }).catch(console.error);
       </script>
     </body>
 </html>
