@@ -34,7 +34,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/custom.geo.top_nz.json",
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/custom.geo.top_nz.json",
         "format": {"type": "topojson", "feature": "custom.geo_nz"}
       },
       "mark": {
@@ -46,7 +46,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
       },
       "mark": {"type": "circle"},
       "encoding": {

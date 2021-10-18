@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"},
+    "data": {"url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"},
     "hconcat": [{
     "width":175,
     "title": "Speed Limit against Traffic Controls",
