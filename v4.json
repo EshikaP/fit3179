@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Stacked Bar chart",
   "data": {
-      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/main/Datasets/Final_Files/road_accidents_nz.csv"
+      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
     },
   "title": {"text":"Stacked Bar Chart of the Total Number of Road Accidents in each Local Government Area in 2018"},
   "hconcat": [ 
