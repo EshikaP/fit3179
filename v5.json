@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dot Plot for number fo accidents for each vechicle type",
+  "description": "Dot Charts for number of accidents for each vehicle type",
   "data": {
       "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/vechicle_accidents_nz.csv"
     },
     "config": {"concat": {"spacing": 70}, "padding": 35, "legend": {"orient":"none", "legendX": 940, "legendY": 0}},
     "hconcat": [
       {"layer": [
-            {"title": "Dot Plot of Total Road Accidents for each Vehicle Type",
+            {"title": "Dot Chart of Total Road Accidents for each Vehicle Type",
             "width": 400,
             "height": 250,
             "mark": {
@@ -48,7 +48,7 @@
 
         {"layer": [
               {"transform": [{"filter": "datum.Vechicle != 'car'"}],
-              "title": "Dot Plot of Total Road Accidents for each Vehicle Type (Without 'Car')",
+              "title": "Dot Chart of Total Road Accidents for each Vehicle Type (Without 'Car')",
               "width": 400,
               "height": 250,
               "mark": {
