@@ -8,6 +8,7 @@
     "center": {"expr": "center_to"},
     "scale": {"expr": "zoom_level"}
   },
+
   "params": [
     {
       "name": "zoom_level",
@@ -25,8 +26,8 @@
       "value": [172, -41],
       "bind": {
         "input": "select",
-        "options": [[175, -37], [172, -43], [170, -46], [174, -41]],
-        "labels": ["Auckland", "Christchurch", "Dunedin", "Wellington"],
+        "options": [[175, -37], [172, -43], [170, -46], [174, -41], [172, -41]],
+        "labels": ["Auckland", "Christchurch", "Dunedin", "Wellington", "Center"],
         "name": "Map Centre: "
       }
     }
@@ -53,7 +54,8 @@
         "longitude": {"field": "longitude", "type": "quantitative"},
         "latitude": {"field": "latitude", "type": "quantitative"},
         "size": {"value": 4},
-        "tooltip": [{"field": "longitude", "type": "quantitative", "title": "Longitude"}, 
+        "tooltip": [{"field": "local_government_area", "type": "nominal", "title": "Local Government Area"},
+                    {"field": "longitude", "type": "quantitative", "title": "Longitude"}, 
                     {"field": "latitude", "type": "quantitative", "title": "Latitude"}, 
                     {"field": "severity", "type": "nominal", "title": "Severity of Road Accident"}],
         "color": {
@@ -72,6 +74,54 @@
           "title": "Severity of Road Accident"
         }
       }
-    }
-  ]
+    },
+    {"data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
+      },
+      "transform": [{"filter": {"and": ["datum.longitude == '174.7739492'",
+                                        "datum.latitude == '-41.29269997'"]}}],
+      "mark": {"type": "text"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "local_government_area", "type": "nominal"},
+        "opacity": {"value": 0.1}}
+},
+    {"data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
+      },
+      "transform": [{"filter": {"and": ["datum.longitude == '174.8388009'",
+                                        "datum.latitude == '-36.90850932'"]}}],
+      "mark": {"type": "text"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "local_government_area", "type": "nominal"},
+        "opacity": {"value": 0.2}}
+},
+    {"data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
+      },
+      "transform": [{"filter": {"and": ["datum.longitude == '170.5180622'",
+                                        "datum.latitude == '-45.89372319'"]}}],
+      "mark": {"type": "text"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "local_government_area", "type": "nominal"},
+        "opacity": {"value": 0.6}}
+},
+    {"data": {
+        "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"
+      },
+      "transform": [{"filter": {"and": ["datum.longitude == '172.5248086'",
+                                        "datum.latitude == '-43.54501186'"]}}],
+      "mark": {"type": "text"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "local_government_area", "type": "nominal"},
+        "opacity": {"value": 0.4}}
+}
+]
 }

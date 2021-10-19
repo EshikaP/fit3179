@@ -1,87 +1,135 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dot Plot for number fo accidents for each vechicle type",
-  "data": {
-      "url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/vechicle_accidents_nz.csv"
-    },
-    "config": {"concat": {"spacing": 30}},
+    "data": {"url": "https://raw.githubusercontent.com/EshikaP/fit3179/FIT3179-Visualisation2/road_accidents_nz.csv"},
     "hconcat": [
-      {"layer": [
-            {"title": "Dot Plot of Total Road Accidents for each Vehicle Type in 2018",
-            "width": 475,
-            "height": 250,
-            "mark": {
-            "type": "circle",
-            "opacity": 1,
-            "size": 100},
-            "params": [{
-              "name": "vechicle_legend",
-              "select": {"type": "point", "fields": ["Vechicle"]}}],
-            "encoding": {
-              "x": {"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"},
-              "y": {"field": "Accidents", "type": "quantitative", "title": "Number of Accidents"},
-              "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
-                {"field": "Accidents", "type": "quantitative", "title": "Number of Accidents"}],
-              "color": {
-                "field": "Vechicle",
-                "type": "nominal",
-                "scale": {"range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]},
-                "legend": null
-            },
-            "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}}
-            },
-          {
-            "transform": [
-              {"filter": "datum.Vechicle == 'car'"},
-              {"calculate": "'Cars were in the most road accidents: ' + datum['Accidents']", "as": "text_annotation"}],
-              "mark": {"type": "text", "dx": -110, "dy":-105, "fontWeight":"bold", "color": "#7F461B"},
-              "params": [{
-                  "name": "vechicle_filter",
-                  "select": {"type": "point", "fields": ["Vechicle"]}}],
-              "encoding": {
-              "text": {"calculate": "'The most road accidents: ' + datum['Accidents']", "field": "text_annotation"},
-              "opacity":{"condition": {"param": "vechicle_filter", "value": 1}, "value": 0.15}}
-              }
-        ]},
-
-
-        {"layer": [
-              {"transform": [{"filter": "datum.Vechicle != 'car'"}],
-              "title": "Dot Plot of Total Road Accidents for each Vehicle Type in 2018 (Without 'Car' category)",
-              "width": 475,
-              "height": 250,
-              "mark": {
-              "type": "circle",
-              "opacity": 1,
-              "size": 100},
-              "params": [{
-                  "name": "vechicle_legend",
-                  "select": {"type": "point", "fields": ["Vechicle"]}}],
-              "encoding": {
-                "x": {"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"},
-                "y": {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"},
-                "tooltip": [{"field": "Vechicle", "type": "nominal", "title": "Type of Vehicle"}, 
-                  {"field": "Accidents", "type": "quantitative", "title": "Total Number of Road Accidents"}],
-                "color": {
-                  "field": "Vechicle",
-                  "type": "nominal",
-                  "scale": {"range": ["#E7298A", "#7F461B", "#7570B3", "#E6AB02", "#000080", "#66A61E"]},
-                  "legend": null
-          },
-          "opacity":{"condition": {"param": "vechicle_legend", "value": 1}, "value": 0.15}
-          }}, 
-          {
-            "transform": [
-              {"filter": "datum.Vechicle == 'truck'"},
-              {"calculate": "'Trucks were in the most road accidents: ' + datum['Accidents']", "as": "text_annotation"}],
-              "mark": {"type": "text", "dx": 110, "dy":-110, "fontWeight":"bold", "color": "#66A61E"},
-              "params": [{
-                  "name": "vechicle_filter",
-                  "select": {"type": "point", "fields": ["Vechicle"]}}],
-              "encoding": {
-              "text": {"calculate": "'The most road accidents: ' + datum['Accidents']", "field": "text_annotation"},
-              "opacity":{"condition": {"param": "vechicle_filter", "value": 1}, "value": 0.15}}
-              }]}
-    ]
+      
+    {"width":175,
+    "title": "Speed Limit against Traffic Controls",
+    "transform": [{"filter": {"and": ["datum.traffic_controls != ''"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "traffic_controls", "title": "Traffic Controls", "axis": {"labelExpr": "{'giveway_sign': 'Giveway Sign', 'stop_sign': 'Stop Sign', 'traffic_lights': 'Traffic Light', 'manual_control': 'Manual Control', 'school_crossing': 'School Crossing'}[datum.label]"}},
+      "y": {"field": "speed_limit", "type": "nominal", "title": "Speed Limit", "sort": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110"]}},
+    "layer": [{
+    "width":175,
+    "title": "Speed Limit against Traffic Controls",
+    "transform": [{"filter": {"and": ["datum.traffic_controls != ''"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "traffic_controls", "title": "Traffic Controls"},
+      "y": {"field": "speed_limit", "type": "nominal", "title": "Speed Limit"},
+      "color": {"aggregate": "count", "type": "quantitative",
+      "scale": {
+        "reverse": true,
+        "type": "threshold",
+        "domain": [20,50,100,200,500,1000,5000,10000,20000],
+        "range": ["#1D0058",
+                  "#0D006C",
+                  "#020D7F",
+                  "#052F92",
+                  "#0858A4",
+                  "#2788B2",
+                  "#46B2C0",
+                  "#66CDC6",
+                  "#88D9C4",
+                  "#AAE5CA",
+                  "#CCF0D8"]},
+      "title": "Total Number of Road Accidents"}
+    } 
+    },
+    {
+    "mark": "text",
+    "transform": [{"filter": {"and": ["datum.traffic_controls != ''"]}}],
+    "encoding": {
+      "x": {"field": "traffic_controls"},
+      "y": {"field": "speed_limit"},
+      "text": {"aggregate": "count", "field": "speed_limit", "type": "quantitative"},
+      "color": {"condition": {"test": "datum['__count'] < 500", "value": "black"}, "value": "white"}}}]
+    }
     
-}
+    ,{"width":175,
+      "title": "Speed Limit against Lighting",
+      "transform": [{"filter": {"and": ["datum.lighting != ''"]}}],
+      "mark": {"type": "rect", "tooltip": true},
+      "encoding": {
+        "x": {"field": "lighting", "title": "Lighting", "axis": {"labelExpr": "{'daylight': 'Daylight', 'dawn_dusk': 'Dawn/Dusk', 'darkness_not_lit': 'Dark'}[datum.label]"}},
+        "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit", "sort": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110"]}},
+    "layer": [{
+      "width":175,
+      "title": "Speed Limit against Lighting",
+      "transform": [{"filter": {"and": ["datum.lighting != ''"]}}],
+      "mark": {"type": "rect", "tooltip": true},
+      "encoding": {
+        "x": {"field": "lighting", "title": "Lighting"},
+        "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit"},
+        "color": {"aggregate": "count", "type": "quantitative",
+        "scale": {
+        "reverse": true,
+        "type": "threshold",
+        "domain": [20,50,100,200,500,1000,5000,10000,20000],
+        "range": ["#1D0058",
+                  "#0D006C",
+                  "#020D7F",
+                  "#052F92",
+                  "#0858A4",
+                  "#2788B2",
+                  "#46B2C0",
+                  "#66CDC6",
+                  "#88D9C4",
+                  "#AAE5CA",
+                  "#CCF0D8"]},
+        "title": "Total Number of Road Accidents"}
+      }},
+      {
+      "mark": "text",
+      "transform": [{"filter": {"and": ["datum.lighting != ''"]}}],
+      "encoding": {
+        "x": {"field": "lighting"},
+        "y": {"field": "speed_limit"},
+        "text": {"aggregate": "count", "field": "speed_limit", "type": "quantitative"},
+        "color": {"condition": {"test": "datum['__count'] < 500", "value": "black"}, "value": "white"}}}]
+    }
+    , 
+    {    "width":175,
+    "title": "Speed Limit against Weather Conditons",
+    "transform": [{"filter": {"and": ["datum.weather != ''"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "weather", "title": "Weather Conditons", "axis": {"labelExpr": "{'fine': 'Fine', 'mist': 'Mist', 'snow': 'Snow', 'rain': 'Rain'}[datum.label]"}},
+      "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit", "sort": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110"]}},
+      "layer": [{
+    "width":175,
+    "title": "Speed Limit against Weather Conditons",
+    "transform": [{"filter": {"and": ["datum.weather != ''"]}}],
+    "mark": {"type": "rect", "tooltip": true},
+    "encoding": {
+      "x": {"field": "weather", "title": "Weather Conditons"},
+      "y": {"field": "speed_limit", "type": "ordinal", "title": "Speed Limit"},
+      "color": {"aggregate": "count", "type": "quantitative",
+        "scale": {
+        "reverse": true,
+        "type": "threshold",
+        "domain": [20,50,100,200,500,1000,5000,10000,20000],
+        "range": ["#1D0058",
+                  "#0D006C",
+                  "#020D7F",
+                  "#052F92",
+                  "#0858A4",
+                  "#2788B2",
+                  "#46B2C0",
+                  "#66CDC6",
+                  "#88D9C4",
+                  "#AAE5CA",
+                  "#CCF0D8"]},
+      "title": "Total Number of Road Accidents"}
+    }} ,{
+      "mark": "text",
+      "transform": [{"filter": {"and": ["datum.weather != ''"]}}],
+      "encoding": {
+        "x": {"field": "weather"},
+        "y": {"field": "speed_limit"},
+        "text": {"aggregate": "count", "field": "speed_limit", "type": "quantitative"},
+        "color": {"condition": {"test": "datum['__count'] < 500", "value": "black"}, "value": "white"}}}]
+        }
+    ]
+  }
