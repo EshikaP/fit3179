@@ -54,7 +54,8 @@
         "longitude": {"field": "longitude", "type": "quantitative"},
         "latitude": {"field": "latitude", "type": "quantitative"},
         "size": {"value": 4},
-        "tooltip": [{"field": "longitude", "type": "quantitative", "title": "Longitude"}, 
+        "tooltip": [{"field": "local_government_area", "type": "nominal", "title": "Local Government Area"},
+                    {"field": "longitude", "type": "quantitative", "title": "Longitude"}, 
                     {"field": "latitude", "type": "quantitative", "title": "Latitude"}, 
                     {"field": "severity", "type": "nominal", "title": "Severity of Road Accident"}],
         "color": {
